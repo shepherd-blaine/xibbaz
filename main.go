@@ -8,7 +8,7 @@ import (
     "net/http"
     "strconv"
     "strings"
-    "time"
+//    "time"
 )
 
 type Alerter struct {
@@ -211,7 +211,7 @@ func main() {
     checker.SetLimits(`{ "la": { "type":"scalar", "value":30 }, "ram":{"type":"percent", "value":80}, "disk":{"type":"percent", "value":90}, "net":{"type":"percent", "value":90}}`)
 
     for {
-        time.Sleep(1 * time.Second)
+        //time.Sleep(0.1 * time.Second)
         checker.LoadInfo().CheckLimits()
     }
 }

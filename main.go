@@ -94,7 +94,7 @@ func NewResourceChecker(alerter *Alerter, formatter *ValueFormatter) *ResourceCh
     }
 }
 
-func (rc *ResourceChecker) SetUri(uri string) *ResourceChecker {
+func (rc *ResourceChecker) SetURI(uri string) *ResourceChecker {
     rc.uri = uri
     return rc
 }
@@ -207,7 +207,7 @@ func (rc *ResourceChecker) CheckLimits() *ResourceChecker {
 
 func main() {
     checker := NewResourceChecker(NewAlerter(), NewValueFormatter())
-    checker.SetUri("http://srv.msk01.gigacorp.local/_stats")
+    checker.SetURI("http://srv.msk01.gigacorp.local/_stats")
     checker.SetLimits(`{ "la": { "type":"scalar", "value":30 }, "ram":{"type":"percent", "value":80}, "disk":{"type":"percent", "value":90}, "net":{"type":"percent", "value":90}}`)
 
     for {

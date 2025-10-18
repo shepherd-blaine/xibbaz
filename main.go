@@ -58,7 +58,7 @@ func (vf *ValueFormatter) Format(param string, data map[string]int, result int) 
 }
 
 func (vf *ValueFormatter) netValue(data map[string]int, value int) int {
-    return (data["total"] - data["res"]) / (1024 * 1024)
+    return (data["total"] - data["res"]) / (1000 * 1000)
 }
 
 func (vf *ValueFormatter) diskValue(data map[string]int, value int) int {
@@ -207,11 +207,11 @@ func (rc *ResourceChecker) CheckLimits() *ResourceChecker {
 
 func main() {
     checker := NewResourceChecker(NewAlerter(), NewValueFormatter())
-    checker.SetUri("http://tardis.localhost/_stats/index.php")
+    checker.SetUri("http://srv.msk01.gigacorp.local/_stats")
     checker.SetLimits(`{ "la": { "type":"scalar", "value":30 }, "ram":{"type":"percent", "value":80}, "disk":{"type":"percent", "value":90}, "net":{"type":"percent", "value":90}}`)
 
     for {
-        checker.LoadInfo().CheckLimits()
         time.Sleep(1 * time.Second)
+        checker.LoadInfo().CheckLimits()
     }
 }
